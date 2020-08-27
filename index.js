@@ -22,7 +22,6 @@ io.on('connection', socket => {
   console.log('获取操作系统版本号： ' + os.release());
   console.log('获取系统当前运行的时间： ' + os.uptime())
   console.log('系统总内存量： ' + (os.totalmem() / 1024 / 1024 / 1024).toFixed(1) + 'G')
-  console.info(os.networkInterfaces())
   console.log('+++++++++++++++++++++++++++++++')
   io.emit('connected', ip)
   socket.on('chat message', function (msg) {
@@ -37,6 +36,16 @@ io.on('connection', socket => {
     console.log('--------------------------------')
     io.emit('disconnect', ip)
   });
+  //接收数据
+ socket.on('login', function (obj) {    
+  console.log(obj.username);
+  // 发送数据
+  socket.emit('relogin', {
+    msg: `你好${obj.username}`,
+    code: 200
+  }); 
+ });
+
 });
 
 
