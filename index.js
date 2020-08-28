@@ -40,7 +40,7 @@ io.on('connection', socket => {
  socket.on('login', function (obj) {    
   console.log(obj.username);
   // 发送数据
-  socket.emit('relogin', {
+  io.emit('relogin', {
     msg: `你好${obj.username}`,
     code: 200
   }); 
